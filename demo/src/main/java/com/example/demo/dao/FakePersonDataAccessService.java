@@ -30,7 +30,7 @@ public class FakePersonDataAccessService implements PersonDao{
     public Optional<Person> selectPersonById(UUID id) {
         Optional<Person> p;
         p = DB.stream().filter(person -> person.getId().equals(id)).findFirst();
-        return Optional.of(p.get());
+        return p;
     }
 
     @Override
