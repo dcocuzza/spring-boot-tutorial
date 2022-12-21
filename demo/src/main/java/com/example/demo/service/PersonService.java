@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,6 +45,26 @@ public class PersonService {
     {
         personRepository.deleteById(id);
         personRepository.save(newPerson);
+    }
+
+    public boolean validate(char lettera)
+    {
+        if(((int)lettera >= 65 && (int)lettera <= 90) || ((int)lettera >= 97 && (int)lettera <= 122))
+            return true;
+        return false;
+    }
+
+    public List<Person> getNamesByChar(char lettera)
+    {
+        List<Person> p;
+        boolean valida = validate(lettera);
+        if(valida)
+        {
+            p = personRepository.getNamesByChar(lettera);
+            return p;
+        }
+
+        return null;
     }
 
 }
